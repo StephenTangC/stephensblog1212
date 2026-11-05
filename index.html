@@ -1,0 +1,625 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stephen's Space & Blog'</title>
+    <style>
+        /* === 默认样式与全局重置 === */
+        * {
+            margin: 0;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            position: relative;
+            background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0,0,0,0.5)), url('Image/BackTitle.png') no-repeat center center/cover;
+            color: #fff;
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .header-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+        }
+        .header-title h1 {
+            font-size: 32px;
+            font-family: Comic Sans MS;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #f4f4f9;
+        }
+        .header-title p {
+            font-size: 18px;
+            font-family: Papyrus, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            opacity: 0.9;
+        }
+        .lang-dropdown {
+            position: relative;
+        }
+        .lang-btn {
+            background-color: rgba(255, 255, 255, 0.7);
+            color: #000;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 7px 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .lang-btn:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        .lang-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: #fff;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            z-index: 10;
+            min-width: 100px;
+        }
+        .lang-menu a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+        .lang-menu a:hover {
+            background-color: #f0f0f0;
+        }
+        /* 鼠标悬停显示语言菜单 (纯CSS简易实现) */
+        .lang-dropdown:hover .lang-menu {
+            display: block;
+        }
+
+        /* === 2. 导航栏 (Navigation) === */
+        nav {
+            background-color: #96C2DB;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-family:Jokerman;
+            transition: background 0.3s;
+        }
+            nav a:hover, nav a.active {
+                background-color: #E5EDF1;
+                color: #333;
+                border-radius: 26px;
+            }
+
+        /* === 3. 内容区 (Content) === */
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+            min-height: 400px;
+        }
+
+        .tab-content {
+            display: none;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 博客与项目列表通用样式 */
+        .post-card, .project-card {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .post-card:last-child, .project-card:last-child {
+            border-bottom: none;
+        }
+
+        .post-card h3 a, .project-card h3 a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .post-card h3 a:hover, .project-card h3 a:hover {
+            color: #3498db;
+            text-decoration: underline;
+        }
+
+        .post-item {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .post-item img {
+            width: 160px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .post-date {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .project-item {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .project-item img {
+            width: 200px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* About me 样式 */
+        .about-profile {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 40%;
+            object-fit: cover;
+        }
+
+        /* Contact 表单样式 */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .contact-form button {
+            background-color: #839cff;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #335cf8;
+        }
+
+        /* === 4. 页尾 (Footer) === */
+        footer {
+            background: linear-gradient(rgba(255, 255, 255, 0.1), #eee), url('Image/Back02.png') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 14px;
+        }
+
+        footer .social-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer .social-links a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer .social-links a:hover {
+            text-decoration: underline;
+        } 
+    </style>
+</head>
+<body>
+    <!-- 1. 标题 (Header) -->
+    <header>
+        <div class="header-left">
+            <img>
+            <div class="header-title">
+                <h1 data-i18n="header_title">Welcome to StephenTang's space!</h1>
+                <p data-i18n="header_subtitle">Documenting games and indie development</p>
+            </div>
+        </div>
+        <!-- 右上角语言切换按钮 -->
+        <div class="lang-dropdown">
+            <button class="lang-btn">Language ▼</button>
+            <div class="lang-menu">
+                <a href="#de" onclick="changeLanguage('de')">Deutsch</a>
+                <a href="#en" onclick="changeLanguage('en')">English</a>
+                <a href="#zh" onclick="changeLanguage('zh')">简体中文</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. 导航 (Navigation) -->
+    <nav>
+        <a href="#" onclick="switchTab(event, 'home')" class="nav-link active" data-i18n="nav_home">Home Page</a>
+        <a href="#" onclick="switchTab(event, 'blog')" class="nav-link" data-i18n="nav_blog">Blog & Moment</a>
+        <a href="#" onclick="switchTab(event, 'projects')" class="nav-link" data-i18n="nav_projects">Projects</a>
+        <a href="#" onclick="switchTab(event, 'about')" class="nav-link" data-i18n="nav_about">About Me</a>
+        <a href="#" onclick="switchTab(event, 'contact')" class="nav-link" data-i18n="nav_contact">Contact</a>
+    </nav>
+
+    <!-- 3. 内容 (Content) -->
+    <main>
+        <!-- 主页默认内容 -->
+        <div id="home" class="tab-content active" style="background-color: #E5EDF1">
+            <h2 data-i18n="home_heading" style="color: #333; font-family: MV Boli; font-size: 32px">Home Page</h2>
+            <p data-i18n="home_text1" style="color: #333; margin-top: 15px; font-family: Rockwell Nova; font-size: 20px ">Hello! Welcome to my personal indie blog. Here I document my game development journey, tech tips, and daily life.</p>
+            <p data-i18n="home_text2" style="color: #333; margin-top: 10px; font-family: Rockwell Nova; font-size: 20px ">You can use the navigation bar above to view my projects, learn about my background, or get in touch with me.</p>
+        </div>
+
+        <!-- Blog & Moment 内容 (由晚至早排序) -->
+        <div id="blog" class="tab-content">
+            <h2 data-i18n="nav_blog" style="color: #666; font-family: MV Boli; font-size: 32px">Blog&Moment</h2>
+            <div class="post-card"
+                 style="background: linear-gradient(#f0f0f0, #e0ebfb); border-radius: 12px ">
+                <div class="post-item">
+                    <img src="Image/BackTitle.png">
+                    <div>
+                        <h3 style="font-family: Comic Sans MS; color: #666; font-size: 26px "><a href="#" onclick="showBlogPost(event, 'post-1')" data-i18n="blog_title01">My personal website is officially live!</a></h3>
+                        <div class="post-date" style="color: #000; font-size: 16px">Date: 2026-10-28</div>
+                        <p style="color: #000; font-size: 20px; font-family: Rockwell " data-i18n="blog_intro01">Stay tuned, the fun is just getting started!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="post-1" class="blog-detail-view" 
+        style="display: none; background: linear-gradient(#fff, #e0ebfb)">
+            <button onclick="backToBlogList()" style="background: none; border: none; color: #3498db; cursor: pointer; font-size: 16px; margin-bottom: 15px;" data-i18n="blog_back">&larr; Back to List</button>
+            <div class="post-date">2026-10-28</div>
+            <h2 data-i18n="blog_title01">My personal website is officially live!</h2>
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text01">Talk about a long-overdue milestone! I actually learned HTML and CSS two years ago,
+            but between balancing my university studies and diving deep into game development, 
+            the plan to build a website ended up on the back burner... 
+            Until about a month ago, when I decided to brush up on my frontend skills and level up with new backend stack like SQL and MySQL!</p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text02">I’ve always believed that the best way to learn is by building things. Reading tutorials is one thing, but actually putting theory into code is where the real magic happens. 
+            Unsurprisingly, "easier said than done" hit me pretty hard, and I bumped into plenty of roadblocks along the way. But after two or three weeks of coding and debugging, the initial version of my site is finally live and fully functional!</p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text03">This is just Version 1.0, though. 
+            I’ll definitely keep refining it—adding cool new features, redesigning the visual style, 
+            and making it even better. Alongside Instagram and X, this space will be my dedicated hub for sharing game dev insights and revealing upcoming game projects. </p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text04">Stay tuned, the fun is just getting started!</p>
+        </div>
+
+        <!-- 项目内容 (由新到旧排序) -->
+        <div id="projects" class="tab-content" style="background: #E5EDF1">
+            <h2 data-i18n="nav_projects" style="color: #666; font-family: MV Boli; font-size: 36px">Projects</h2>
+            <div class="project-card">
+                <div class="project-item" style="background: rgba(255, 255, 255, 0.4)">
+                    <img src="Image/Project01ComingSoon.png" alt="ScreenCut">
+                    <div>
+                        <h3 data-i18n="project_projectTitle01">Adventures of Paw</h3>
+                        <p style="margin-top: 5px; color: #666; font-size: 14px;" data-i18n="project_projectText01">It was supposed to be a regular afternoon, but Charles hadn't returned home since he went out shopping yesterday. His two pets, Dylan the cat and Amy the dog, were beginning to search of their owner...</p>
+                        <p style="margin-top: 5px; color: #666; font-size: 14px;"><strong data-i18n="project_genre">Genre:</strong> <span data-i18n="project_projectGenre01">Singleplayer，Dual Protagonists，2D，Adventure，Puzzle</span> </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Me 内容 -->
+        <div id="about" class="tab-content">
+            <h2 data-i18n="nav_about" style="color: #666; font-family: MV Boli; font-size: 36px">About Me</h2>
+            <div class="about-profile" style="margin-top: 20px;">
+                <img src="Image/Profile.png" alt="个人头像" class="about-avatar">
+                <div>
+                    <h3 style="margin-bottom: 5px;" data-i18n="about_desc">Hey, I'm Stephen, but you can call me Tang. Welcome to my personal website!</h3>
+                    <p style="color: #666; font-size: 16px; margin-bottom: 10px;" data-i18n="about_text01">I'm a Otaku with double Bachelor's degrees in Civil Engineering and Computer Science.</p>
+                    <p style="color: #666; font-size: 16px; margin-bottom: 10px;" data-i18n="about_text02">As an avid gamer turned developer, this is my little corner of the web where I document my game development journey and share my Indie-projects.</p>
+                    <p style="font-size: 14px;"><strong>Skill：</strong> C#, Unity, HTML/CSS, Unreal Engine, Blender 3D</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact 内容 -->
+        <div id="contact" class="tab-content">
+            <h2 data-i18n="nav_contact" style="color: #666; font-family: MV Boli; font-size: 36px">Contact</h2>
+            <!--<form class="contact-form" action="你的FormID" method="POST">-->
+            <form class="contact-form" style="margin-top: 20px;" onsubmit="event.preventDefault(); alert('发送成功！（演示用）');">
+                <div>
+                    <label data-i18n="contact_email">How can I get in touch with you?</label>
+                    <input type="email" id="contact-email" placeholder="Your Email..." required>
+                </div>
+                <div>
+                    <label data-i18n="contact_sub">Email subject line</label>
+                    <input type="text" id="contact-sub" placeholder="..." required>
+                </div>
+                <div>
+                    <label data-i18n="contact_call">How should I address you?</label>
+                    <input type="text" id="contact-title" placeholder="Prof./Dr./Mr./Mrs. ...">
+                </div>
+                <div>
+                    <label data-i18n="contact_name">What is your name? (You may use a alias)</label>
+                    <input type="text" id="contact-name" placeholder="..." required>
+                </div>
+                <div>
+                    <label data-i18n="contact_message">What would you like to say?</label>
+                    <textarea id="contact-msg" rows="5" placeholder="..." required></textarea>
+                </div>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- 4. 页尾 (Footer) -->
+    <footer>
+        <p>&copy; 2026 Stephen'Space. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://x.com/StcStephennoway" target="_blank">X(Twitter) </a>
+            <a href="https://www.instagram.com/scotch4mylove?dlrf=MXF0eTZ2eTlqeGN6Yw==" target="_blank">Instagram </a>
+        </div>
+    </footer>
+
+    <!-- 简单的 JavaScript 用于控制导航栏标签切换 -->
+    <script>
+        function switchTab(event, tabId) {
+            // 阻止默认的超链接跳转行为
+            event.preventDefault();
+
+            // 移除所有导航链接的 active 类
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // 给当前点击的导航链接加上 active 类
+            event.currentTarget.classList.add('active');
+
+            document.querySelectorAll('.blog-detail-view').forEach(view => {
+                view.style.display = 'none';
+            });
+
+            // 隐藏所有的内容板块
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+
+            // 显示对应 ID 的内容板块
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // 2. 语言下拉菜单点击展开/关闭
+        const langBtn = document.querySelector('.lang-btn');
+        const langMenu = document.querySelector('.lang-menu');
+
+        langBtn.addEventListener('click', function (event) {
+            event.stopPropagation();
+            langMenu.classList.toggle('show');
+        });
+
+        window.addEventListener('click', function () {
+            if (langMenu.classList.contains('show')) {
+                langMenu.classList.remove('show');
+            }
+        });
+
+        // 3. 多语言翻译词典 (Translations)
+        const translations = {
+            zh: {
+                header_title: "欢迎来到我的个人空间",
+                header_subtitle: "记录代码、游戏与独立开发日常",
+                lang_btn: "语言 / Language ▼",
+                nav_home: "主页",
+                nav_blog: "博客&日常",
+                nav_projects: "项目",
+                nav_about: "关于开发者",
+                nav_contact: "与我联系",
+                home_heading: "网页介绍",
+                home_text1: "你好！欢迎来到我的个人独立博客。这里主要记录我的游戏开发历程、技术分享以及日常生活点滴。",
+                home_text2:"你可以通过上方的导航栏查看我的项目作品、了解我的个人经历，或者与我取得联系。",
+                blog_back: "返回列表",
+                blog_title01: "我的第一个网站正式登场!",
+                blog_intro01: "独立游戏开发之旅才刚刚开始，敬请期待！",
+                blog_blog01text01: "人们常说“好的开始是成功的一半”，但对我来说，这个网站的开端更像是一个藏了很久的彩蛋！其实早在两年前我就学过了 HTML 和 CSS，但后来因为死磕学业和埋头学习怎么做游戏，建站的计划就被搁置在角落里吃灰了……直到一个月前，我才重新拾起这些前端知识，顺便把SQL、MySQL等数据库技能补习了一遍！",
+                blog_blog01text02: "我始终相信：“实践才是最好的教程”。光是在脑子里“觉得自己学会了”毫无意义，直接动手写代码才是硬道理。果然，事实证明“眼睛懂了，手还没懂”，中间踩了不坑。不过在经历了两三个星期的努力，这个小网页终于成功搭建起来了！目前的功能虽然朴素，但该有的都有啦~",
+                blog_blog01text03: "当然，这只是 1.0 基础版本。未来我还会继续迭代更新——加入更多酷炫的新功能、重新设计更具游戏感的主题视觉等等。除了 Instagram 和 X（Twitter）之外，这里将成为我分享独立游戏开发心得、发布最新游戏项目的专属阵地。",
+                blog_blog01text04: "独立游戏开发之旅才刚刚开始，敬请期待！",
+                proj_desc: "这里将展示游戏和开发项目...",
+                project_genre: "游戏类别:",
+                project_projectTitle01: "宠爪历险记",
+                project_projectText01: "原本只是普通的中午，但是主人查尔斯自前一天下午出门买东西就再也没回来了。他的两个小宠物，猫咪迪伦和小狗艾米开始找寻它们的主人...",
+                project_projectGenre01: "单人,双主角,2D,冒险,解谜",
+                about_desc: "你好啊，我叫斯蒂芬（Stephen），你也可以叫我糖，欢迎来到我的个人小天地！",
+                about_text01: "我是一个拥有工程力学与计算机科学双学士学位的游戏宅男",
+                about_text02: "作为一名热爱游戏也沉迷游戏的开发者，这里是我记录游戏开发日常、分享自己独立游戏项目的专属空间。",
+                contact_desc: "请通过表单与我取得联系...",
+                contact_email: "您的邮箱地址：",
+                contact_sub: "您的邮件标题：",
+                contact_call: "我该如何称呼您?",
+                contact_name: "您的名字? (可使用化名)",
+                contact_message: "您的内容：",
+                footer_rights: "© 2026 我的个人主页. All Rights Reserved."
+            },
+            en: {
+                header_title: "Welcome to StephenTang's space!",
+                header_subtitle: "Documenting games and indie development",
+                lang_btn: "Language ▼",
+                nav_home: "Home Page",
+                nav_blog: "Blog & Moment",
+                nav_projects: "Projects",
+                nav_about: "About Me",
+                nav_contact: "Contact",
+                home_heading: "Home Page",
+                home_text1: "Hello! Welcome to my personal indie blog. Here I document my game development journey, tech tips, and daily life.",
+                home_text2: "You can use the navigation bar above to view my projects, learn about my background, or get in touch with me.",
+                blog_back: "Back to List",
+                blog_title01: "My personal website is officially live!",
+                blog_intro01: "Stay tuned, the fun is just getting started!",
+                blog_blog01text01: "Talk about a long-overdue milestone! I actually learned HTML and CSS two years ago,but between balancing my university studies and diving deep into game development,the plan to build a website ended up on the back burner...Until about a month ago, when I decided to brush up on my frontend skills and level up with new backend stack like SQL and MySQL!",
+                blog_blog01text02: "I’ve always believed that the best way to learn is by building things. Reading tutorials is one thing, but actually putting theory into code is where the real magic happens. Unsurprisingly, 'easier said than done' hit me pretty hard, and I bumped into plenty of roadblocks along the way.But after two or three weeks of coding and debugging, the initial version of my site is finally live and fully functional!",
+                blog_blog01text03: "This is just Version 1.0, though. I’ll definitely keep refining it—adding cool new features, redesigning the visual style,and making it even better.Alongside Instagram and X, this space will be my dedicated hub for sharing game dev insights and revealing upcoming game projects.",
+                blog_blog01text04: "Stay tuned, the fun is just getting started!",
+                proj_desc: "Games and development projects will be displayed here...",
+                project_genre: "Genre:",
+                project_projectTitle01: "Adventures of Paw",
+                project_projectText01: "It was supposed to be a regular afternoon, but Charles hadn't returned home since he went out shopping yesterday. His two pets, Dylan the cat and Amy the dog, were beginning to search of their owner...",
+                project_projectGenre01: "Singleplayer，Dual Protagonists，2D，Adventure，Puzzle",
+                about_desc: "Hey, I'm Stephen, but you can call me Tang. Welcome to my personal website!",
+                about_text01: "I'm a otaku with double bachelor's degrees in engineering mechanics  and computer science.",
+                about_text02: "As an avid gamer turned developer, this is my little corner of the web where I document my game development journey and share my Indie-projects.",
+                contact_desc: "Please get in touch via the form below...",
+                contact_email: "How can I get in touch with you?",
+                contact_sub: "Email subject line",
+                contact_call: "How should I address you?",
+                contact_name: "What is your name? (You may use a alias)",
+                contact_message:"What would you like to say?",
+                footer_rights: "© 2026 My Personal Page. All Rights Reserved."
+            },
+            de: {
+                header_title: "Willkommen im StephenTang-Space!",
+                header_subtitle: "Dokumentation von Spielen und Indie-Entwicklung",
+                lang_btn: "Sprache ▼",
+                nav_home: "Startseite",
+                nav_blog: "Blog & Moment",
+                nav_projects: "Projekte",
+                nav_about: "Über mich",
+                nav_contact: "Kontakt",
+                home_heading: "Startseite & Einführung",
+                home_text1: "Hallo! Willkommen in meinem persönlichen Indie-Blog. Hier dokumentiere ich meine Reise in der Spieleentwicklung und den Technikalltag.",
+                home_text2: "Über die Navigationsleiste oben haben Sie die Möglichkeit, meine Projekte anzusehen, mehr über meinen Hintergrund zu erfahren oder mit mir in Kontakt zu treten.",
+                blog_back: "Zurück zur Liste",
+                blog_title01: "Meine eigene Website ist endlich online!",
+                blog_intro01: "Bleibt dran, es kommt noch einiges auf euch zu!",
+                blog_blog01text01: "Das wurde aber auch Zeit! HTML und CSS hatte ich mir zwar schon vor zwei Jahren beigebracht, aber wegen des Studiums und meiner Spieleentwicklung wanderte die Idee einer eigenen Website erst mal auf den Stapel der unerledigten Dinge ... Vor einem Monat habe ich den Faden wieder aufgegriffen, den alten Stoff aufgefrischt und mir direkt noch neues Zeug wie SQL und MySQL draufgepackt!",
+                blog_blog01text02: "Ich bin fest davon überzeugt: Das beste Lernen ist das Anwenden! Es bringt nichts, sich nur Theorie reinzuziehen – man muss den Code einfach selbst tippen und schrubben. Und tja ... was auf dem Papier einfach aussieht, hat in der Praxis dann doch für den einen oder anderen rauchenden Kopf gesorgt. Aber nach zwei bis drei Wochen Herumprobieren und Bug-Fixing steht das Grundgerüst endlich! Alle wichtigen Funktionen sind am Start.",
+                blog_blog01text03: "Das ist natürlich erst der Anfang. In Zukunft werde ich die Seite fleißig weiter verbessern – mit coolen neuen Features, einem frischen Design und vielem mehr. Neben Instagram und X wird dieser Ort mein persönliches Hauptquartier, um Entwicklertagebücher (Devlogs) zu teilen und meine zukünftigen Spielprojekte anzukündigen.",
+                blog_blog01text04: "Bleibt dran, es kommt noch einiges auf euch zu!",
+                project_genre: "Genre:",
+                proj_desc: "Spiele und Entwicklungsprojekte werden hier angezeigt...",
+                project_projectTitle01: "Pfoten Abenteuer",
+                project_projectText01: "Es war eigentlich ein ganz gewöhnlicher Mittag. Doch ihr Herrchen Charles, der am Nachmittag zuvor nur kurz zum Einkaufen weggegangen war, kam einfach nicht mehr zurück. Seine beiden kleinen Haustiere – Kätzchen Dylan und Hündchen Amy – begannen, sich auf die Suche nach ihrem Herrchen...",
+                project_projectGenre01: "Einzelspieler, Zwei Protagonisten, 2D, Abenteuer, Rätsel",
+                about_desc: "Hey, ich bin Stephen – aber du kannst mich auch gerne Tang nennen. Willkommen auf meiner Website!",
+                about_text01: "Ich bin ein echter Nerd mit einem Doppel-Bachelor in Technischer Mechanik und Informatik.",
+                about_text02: "Als leidenschaftlicher Gamer und Spieleentwickler nutze ich diesen Ort, um meine Reise durch die Spieleentwicklung zu dokumentieren und meine eigenen Projekte vorzustellen.",
+                contact_desc: "Bitte kontaktiere mich über das Formular...",
+                contact_email: "Wie kann ich mit Ihnen in Kontakt treten?",
+                contact_sub: "Betreffzeile der E-Mail:",
+                contact_call: "HWie soll ich Sie ansprechen?",
+                contact_name: "Wie lautet Ihr Name? (Sie können auch ein Pseudonym verwenden)",
+                contact_message: "Was möchten Sie mir mitteilen?",
+                footer_rights: "© 2026 Meine persönliche Seite. Alle Rechte vorbehalten."
+            }
+        };
+
+        // 4. 切换语言的核心函数
+        function changeLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            langMenu.classList.remove('show'); // 切换后关闭菜单
+        }
+
+        // 5. Blog Und Moment Functionen
+        function showBlogPost(event, postId) {
+            event.preventDefault();
+
+            // 隐藏博客列表
+            document.getElementById('blog').classList.remove('active');
+
+            // 隐藏所有文章详情
+            document.querySelectorAll('.blog-detail-view').forEach(view => {
+                view.style.display = 'none';
+            });
+
+            // 显示用户点击的那一篇博客
+            document.getElementById(postId).style.display = 'block';
+        }
+
+        // Back to Blog List
+        function backToBlogList() {
+            // 隐藏所有文章详情
+            document.querySelectorAll('.blog-detail-view').forEach(view => {
+                view.style.display = 'none';
+            });
+
+            // 重新显示博客列表
+            document.getElementById('blog').classList.add('active');
+        }
+
+        //6. Email Formel
+        function sendEmailViaMailto(event) {
+            event.preventDefault(); // 阻止表单默认刷新行为
+
+            // 获取输入框的值
+            const sub = document.getElementById('contact-sub').value;
+            const title = document.getElementById('contact-title').value;
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const msg = document.getElementById('contact-msg').value;
+
+            // 你的目标邮箱地址
+            const myEmail = "stc30001212@gmail.com";
+
+            // 按照你的要求拼装邮件主题：subtitles - email - 称号 - 名字
+            const subject = encodeURIComponent(`${sub} - ${email} - ${title} - ${name}`);
+
+            // 拼装邮件正文
+            const body = encodeURIComponent(`发件人邮箱: ${email}\n称号: ${title}\n姓名: ${name}\n\n内容:\n${msg}`);
+
+            // 调用系统的邮件客户端
+            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+        }
+    </script>
+</body>
+</html>
