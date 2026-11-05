@@ -397,6 +397,7 @@
                     <textarea id="contact-msg" rows="5" placeholder="..." required></textarea>
                 </div>
                 <button type="submit">Send</button>
+                <p id="form-result"></p>
             </form>
         </div>
     </main>
@@ -634,6 +635,7 @@
             } catch (err) {
                 resultEl.textContent = 'Network error, please try again later.';
             }
+        });
     </script>
 </body>
 </html>
