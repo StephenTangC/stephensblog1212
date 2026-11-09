@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stephen's Space & Blog'</title>
+    <link rel="icon" type="image/png" href="Image/Logo.png">
     <style>
         /* === 默认样式与全局重置 === */
         * {
             margin: 0;
-            padding: 5px;
+            padding: 0;
             box-sizing: border-box;
         }
 
@@ -35,6 +36,7 @@
             align-items: center;
             gap: 15px;
         }
+
         .header-logo {
             width: 50px;
             height: 50px;
@@ -42,6 +44,7 @@
             object-fit: cover;
             border: 2px solid #fff;
         }
+
         .header-title h1 {
             font-size: 32px;
             font-family: Comic Sans MS;
@@ -49,14 +52,17 @@
             margin-bottom: 7px;
             color: #f4f4f9;
         }
+
         .header-title p {
             font-size: 18px;
             font-family: Papyrus, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             opacity: 0.9;
         }
+
         .lang-dropdown {
             position: relative;
         }
+
         .lang-btn {
             background-color: rgba(255, 255, 255, 0.7);
             color: #000;
@@ -66,9 +72,11 @@
             cursor: pointer;
             font-size: 12px;
         }
-        .lang-btn:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-        }
+
+            .lang-btn:hover {
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+
         .lang-menu {
             display: none;
             position: absolute;
@@ -82,16 +90,18 @@
             z-index: 10;
             min-width: 100px;
         }
-        .lang-menu a {
-            display: block;
-            padding: 8px 15px;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-        }
-        .lang-menu a:hover {
-            background-color: #f0f0f0;
-        }
+
+            .lang-menu a {
+                display: block;
+                padding: 8px 15px;
+                text-decoration: none;
+                color: #333;
+                font-size: 14px;
+            }
+
+                .lang-menu a:hover {
+                    background-color: #f0f0f0;
+                }
         /* 鼠标悬停显示语言菜单 (纯CSS简易实现) */
         .lang-dropdown:hover .lang-menu {
             display: block;
@@ -105,19 +115,20 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 24px;
-            font-size: 18px;
-            font-family:Jokerman;
-            transition: background 0.3s;
-        }
-            nav a:hover, nav a.active {
-                background-color: #E5EDF1;
-                color: #333;
-                border-radius: 26px;
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                padding: 12px 24px;
+                font-size: 16px;
+                font-family: Jokerman;
+                transition: background 0.3s;
             }
+
+                nav a:hover, nav a.active {
+                    background-color: #E5EDF1;
+                    color: #333;
+                    border-radius: 20px;
+                }
 
         /* === 3. 内容区 (Content) === */
         main {
@@ -135,9 +146,9 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .tab-content.active {
-            display: block;
-        }
+            .tab-content.active {
+                display: block;
+            }
 
         /* 博客与项目列表通用样式 */
         .post-card, .project-card {
@@ -161,7 +172,7 @@
 
         .post-item {
             display: flex;
-            gap: 12px;
+            gap: 20px;
             align-items: center;
         }
 
@@ -194,7 +205,7 @@
         /* About me 样式 */
         .about-profile {
             display: flex;
-            gap: 50px;
+            gap: 40px;
             align-items: center;
         }
 
@@ -264,7 +275,55 @@
 
         footer .social-links a:hover {
             text-decoration: underline;
-        } 
+        }
+
+        @media screen and (max-width: 768px) {
+            /* 1. 调整顶栏标题大小，防止超出屏幕 */
+            header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+                padding: 20px 15px;
+            }
+
+            .header-title h1 {
+                font-size: 22px;
+            }
+
+            .header-title p {
+                font-size: 14px;
+            }
+
+            /* 2. 缩小导航栏字体和内边距，防止每个词独立成行 */
+            nav a {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            /* 3. 让项目和博客列表在手机上纵向排列（图片在上，文字在下），防止挤压 */
+            .post-item, .project-item, .about-profile {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+                .post-item img, .project-item img {
+                    width: 100%;
+                    height: auto;
+                }
+
+            /* 4. 减小主内容区的内边距 */
+            /* 4. Reduzieren Sie den Abstand des Hauptinhaltsbereichs */
+
+            main {
+                margin: 15px 10px;
+                padding: 0 10px;
+            }
+
+            .tab-content {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -362,7 +421,7 @@
                 <img src="Image/Profile.png" alt="个人头像" class="about-avatar">
                 <div>
                     <h3 style="margin-bottom: 5px;" data-i18n="about_desc">Hey, I'm Stephen, but you can call me Tang. Welcome to my personal website!</h3>
-                    <p style="color: #666; font-size: 16px; margin-bottom: 10px;" data-i18n="about_text01">I'm a Otaku with double Bachelor's degrees in Civil Engineering and Computer Science.</p>
+                    <p style="color: #666; font-size: 16px; margin-bottom: 10px;" data-i18n="about_text01">I'm a Otaku with double Bachelor's degrees in engineering mechanics and Computer Science.</p>
                     <p style="color: #666; font-size: 16px; margin-bottom: 10px;" data-i18n="about_text02">As an avid gamer turned developer, this is my little corner of the web where I document my game development journey and share my Indie-projects.</p>
                     <p style="font-size: 14px;"><strong>Skill：</strong> C#, Unity, HTML/CSS, Unreal Engine, Blender 3D</p>
                 </div>
