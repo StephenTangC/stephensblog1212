@@ -91,17 +91,17 @@
             min-width: 100px;
         }
 
-            .lang-menu a {
-                display: block;
-                padding: 8px 15px;
-                text-decoration: none;
-                color: #333;
-                font-size: 14px;
-            }
+        .lang-menu a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
 
-                .lang-menu a:hover {
-                    background-color: #f0f0f0;
-                }
+         .lang-menu a:hover {
+            background-color: #f0f0f0;
+        }
         /* 鼠标悬停显示语言菜单 (纯CSS简易实现) */
         .lang-dropdown:hover .lang-menu {
             display: block;
@@ -112,23 +112,37 @@
             background-color: #96C2DB;
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            gap: 5px;
+            padding: 10px 0;
         }
 
-            nav a {
-                color: #fff;
-                text-decoration: none;
-                padding: 12px 24px;
-                font-size: 16px;
-                font-family: Jokerman;
-                transition: background 0.3s;
-            }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 15px;
+            font-size: 15px;
+            font-family: Jokerman;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: background 0.3s;
+        }
 
-                nav a:hover, nav a.active {
-                    background-color: #E5EDF1;
-                    color: #333;
-                    border-radius: 20px;
-                }
+        nav a:hover, nav a.active {
+            background-color: #eee;
+            color: #333;
+            border-radius: 12px;
+        }
+
+        .nav_avatar {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
 
         /* === 3. 内容区 (Content) === */
         main {
@@ -297,7 +311,17 @@
             /* 2. 缩小导航栏字体和内边距，防止每个词独立成行 */
             nav a {
                 padding: 8px 12px;
-                font-size: 14px;
+                font-size: 9px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+            }
+
+            .nav_avatar {
+                width: 30px;
+                height: 30px;
+                object-fit: contain;
+                border-radius: 12px;
             }
 
             /* 3. 让项目和博客列表在手机上纵向排列（图片在上，文字在下），防止挤压 */
@@ -349,11 +373,36 @@
 
     <!-- 2. 导航 (Navigation) -->
     <nav>
-        <a href="#" onclick="switchTab(event, 'home')" class="nav-link active" data-i18n="nav_home">Home Page</a>
-        <a href="#" onclick="switchTab(event, 'blog')" class="nav-link" data-i18n="nav_blog">Blog & Moment</a>
-        <a href="#" onclick="switchTab(event, 'projects')" class="nav-link" data-i18n="nav_projects">Projects</a>
-        <a href="#" onclick="switchTab(event, 'about')" class="nav-link" data-i18n="nav_about">About Me</a>
-        <a href="#" onclick="switchTab(event, 'contact')" class="nav-link" data-i18n="nav_contact">Contact</a>
+        <div>
+            <a href="#" onclick="switchTab(event, 'home')" class="nav-link active" data-i18n="nav_home">
+            <img src="Image/Home.png" class="nav_avatar" alt="Home">
+            <span>Home Page</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" onclick="switchTab(event, 'blog')" class="nav-link" data-i18n="nav_blog">
+            <img src="Image/Blog.png" class="nav_avatar" alt="Blog">
+            <span>Blog & Moment</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" onclick="switchTab(event, 'projects')" class="nav-link" data-i18n="nav_projects">
+            <img src="Image/Projects.png" class="nav_avatar" alt="Projects">
+            <span>Projects</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" onclick="switchTab(event, 'about')" class="nav-link" data-i18n="nav_about">
+            <img src="Image/AboutMe.png" class="nav_avatar" alt="About">
+            <span>About Me</span>
+            </a>
+        </div>
+        <div>
+            <a href="#" onclick="switchTab(event, 'contact')" class="nav-link" data-i18n="nav_contact">
+            <img src="Image/ContactMe.png" class="nav_avatar" alt="Contact">
+            <span>Contact</span>
+            </a>
+        </div>      
     </nav>
 
     <!-- 3. 内容 (Content) -->
