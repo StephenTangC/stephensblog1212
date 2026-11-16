@@ -209,6 +209,7 @@
             align-items: center;
         }
 
+
         .project-item img {
             width: 200px;
             height: 120px;
@@ -415,11 +416,21 @@
         </div>
 
         <!-- Blog & Moment 内容 (由晚至早排序) -->
-        <div id="blog" class="tab-content">
+        <div id="blog" class="tab-content" style="background:#f0f4fc">
             <h2 data-i18n="nav_blog" style="color: #666; font-family: MV Boli; font-size: 32px">Blog&Moment</h2>
             <div class="post-card"
-                 style="background: linear-gradient(#f0f0f0, #e0ebfb); border-radius: 12px ">
-                <div class="post-item">
+                 style="background: #d8e0f2; border-radius: 12px ">
+                <div class="post-item" style="background:#fff">
+                    <img src="Image/Blog2.png">
+                    <div>
+                        <h3 style="font-family: Comic Sans MS; color: #666; font-size: 26px "><a href="#" onclick="showBlogPost(event, 'post-2')" data-i18n="blog_title02">When Indie Dev Meets AI: A Year of Crafting vs. Generating a World in One Sentence?</a></h3>
+                        <div class="post-date" style="color: #000; font-size: 16px">Date: 2026-11-16</div>
+                        <p style="color: #000; font-size: 20px; font-family: Rockwell " data-i18n="blog_intro02">How far can AI really go in game development? </p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="post-item" style="background: #fff">
                     <img src="Image/BackTitle.png">
                     <div>
                         <h3 style="font-family: Comic Sans MS; color: #666; font-size: 26px "><a href="#" onclick="showBlogPost(event, 'post-1')" data-i18n="blog_title01">My personal website is officially live!</a></h3>
@@ -430,21 +441,104 @@
             </div>
         </div>
 
-        <div id="post-1" class="blog-detail-view" 
-        style="display: none; background: linear-gradient(#fff, #e0ebfb)">
+        <div id="post-2" class="blog-detail-view"
+             style="display: none; background: linear-gradient(#fff, #f3faf7)">
+            <button onclick="backToBlogList()" style="background: none; border: none; color: #3498db; cursor: pointer; font-size: 16px; margin-bottom: 15px;" data-i18n="blog_back">&larr; Back to List</button>
+            <div class="post-date">2026-11-16</div>
+            <h2 data-i18n="blog_title02">When Indie Dev Meets AI: A Year of Crafting vs. Generating a World in One Sentence?</h2>
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog02text01">
+                Scrolling through the internet lately, I keep running into videos and screenshots of games made entirely with AI.
+                Watching someone type a few prompts, upload a reference image, and conjure up a playable mini-game in just a few minutes leaves me with mixed feelings.
+                <br>
+                On one hand, I can’t help but marvel at how fast modern tools are evolving. On the other hand, looking down at my own first indie game—a project I’ve been painstakingly polishing on and off for a year and am about to launch on Steam—I couldn't help feeling a brief wave of self-doubt.
+                I learned the engine from scratch, wrote every script, tweaked pixel art, and built 3D models step by step, while others seemingly hit "Enter" and called it a day.
+                <br>
+                That said, I’m certainly not someone who shuts the door on new technology. Since AI went mainstream, I’ve used it quite a bit in my daily development, though my approach is fairly pragmatic: I treat it more like an on-call technical consultant to help untangle error logs, optimize C# scripts,
+                or brainstorm solutions when I hit a wall in the engine.
+                <br>
+                Taking a step back, how far can AI really go in game development? The consensus is actually quite clear: "prompt-to-game" tools can generate a playable prototype in minutes, but shipping a polished, release-ready game with great game feel and cohesive art still requires human direction.
+                <br>
+                If we categorize current AI game development workflows, they roughly split into two distinct paths:
+            </p>
+            <p style="margin-bottom: 6px; font-size: 22px; font-weight:bold" data-i18n="blog_blog02texttitel01">
+                Path 1: AI-First Generation — Turning a Single Sentence into a Game (Best for Rapid Prototyping)
+            </p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog02text02">
+                This approach focuses on "prompt-to-game" platforms, with Rosebud being a prime example (alongside similar tools like Websim).
+                <br>
+                The workflow is remarkably intuitive and requires zero coding knowledge. You simply describe your gameplay, camera perspective,
+                win/loss conditions, and art style in a sentence or two right inside your browser.
+                Behind the scenes, the platform translates your ideas into code (such as JavaScript and Three.js for 3D)
+                while simultaneously generating matching 2D/3D assets and audio. Within minutes, you have a live,
+                playable web game. Need a tweak? Just ask in the chat—"increase health" or "make the enemies slower"—and once you're happy,
+                you can share a playable link with friends.
+                <br>
+                <strong>My Take:</strong> Tools like this are fantastic for brainstorming, validating whether a core mechanic is actually fun, or whipping up a quick gift for friends.
+                However, they essentially operate as a "black box"—visual fidelity has its limits, complex system architectures are hard to pull off, and exporting them into a scalable,
+                long-term commercial project remains difficult.
+            </p>
+            <p style="margin-bottom: 6px; font-size: 22px; font-weight:bold" data-i18n="blog_blog02texttitel02">
+                Path 2: Traditional Development with AI as a "Super Tool"
+            </p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog02text03">
+                For developers like me who prefer keeping full control over their projects, I still prefer building the game step-by-step inside a traditional engine, integrating AI deeply into the workflow as a "co-pilot."
+                <br>
+                Beyond coding agents like Codex that can write logic and run tests directly inside a code repository, what excites me most is Unity AI—a suite of tools built directly into Unity 6 and newer editors.
+                <br>
+                The biggest difference between Unity AI and a standard web chatbot is that it can actually see your entire project. Normally, pasting a script into a general LLM is like the blind men feeling an elephant, because behavior in Unity relies heavily on attached components and serialized Inspector values.
+                Unity AI connects directly to your scene hierarchy, asset library, and Inspector data:
+                <br>
+                •	<strong>Coding & Debugging:</strong> You can ask the Assistant right inside the editor to fix console errors, create and wire up GameObjects, or even write a few custom editor tools to speed up your workflow.
+                <br>
+                •	<strong>Rapid Prototyping: </strong>Its built-in generators let you whip up placeholder sprites, textures, audio, or simple 3D prefabs directly in the editor. When blocking out levels to test gameplay feel, you no longer have to stall while waiting for final art—just use placeholders first and swap them out later (plus, Unity automatically tags generated assets with metadata, making them easy to audit and replace before launch).
+                <br>
+                •	<strong>Open Ecosystem: </strong>If you're already comfortable with Claude or Gemini, you can plug them in via interfaces to share the same deep project context without abandoning your favorite tools.
+            </p>
+            <p style="margin-bottom: 6px; font-size: 22px; font-weight:bold" data-i18n="blog_blog02texttitel03">
+                The Upsides of AI in Game Dev—And the Pitfalls to Watch Out For
+            </p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog02text04">
+                Now that we’ve looked at the tools, I want to wrap up with a quick breakdown of the core advantages and potential pitfalls of bringing AI into game development, based on my own experiments and observations. Consider this a personal dev log—and a friendly heads-up for fellow indie creators. Why is mastering AI tools becoming increasingly important for game dev? Because of several undeniable advantages:
+                <br>
+                •	<strong>Unmatched Prototyping Speed:</strong> Testing a raw idea in just one sentence. In the past, testing a new concept meant setting up frameworks and hunting for assets, often taking a week or two just to get a rough prototype. With AI, you can spin up something playable in minutes. This lets you validate whether a core mechanic is actually fun before sinking serious time and energy into art and engineering.
+                <br>
+                •	<strong>Closed-Loop Testing and Debugging: </strong>Modern AI tools do much more than just autocomplete a few lines of code—they can understand project structures, run the game, read real error logs, and even playtest to tweak values. For a solo dev, it feels like having a tireless QA tester and junior programmer on board, taking a huge mental load off hunting down trivial bugs. Knowing this, my next personal project will definitely have one more assistant on board!
+                <br>
+                •	<strong>Industry Normalization: </strong>Games carrying AI disclosure tags on Steam have become a common sight; AI-assisted development is simply part of the modern workflow now. According to one developer's tracking of roughly 53,600 Steam games, 30.8% of new releases in 2026 carried AI disclosure tags by mid-July (Games.gg); another tracker put that figure at 49.9% for October 2026 releases (FinalBoss). While the two datasets use different methodologies and shouldn't be compared one-to-one, the upward trend is undeniable (though this percentage alone doesn't measure how much AI content players actually encounter in-game).
+                <br>
+                <br>
+                <strong>Limitations & Pitfalls (Proceed with Caution)</strong>
+                <br>
+                •	<strong>Quality Ceilings and "Maintenance Debt":</strong> Prompt-to-game platforms can reliably produce small 2D or web games, but they are still far from delivering commercial-grade 3D titles. Even when coding agents handle the core logic, cohesive art and audio still require a human touch. More importantly, beware of "maintenance debt"—if AI writes complex code that you don't actually understand, fixing bugs or adding new features later on will turn into an absolute nightmare.
+                <br>
+                •	<strong>Platform Lock-in and Security Blind Spots:</strong> Many web-based, one-click game generators host projects on their own servers, restricting exports or tucking broad content licenses into their terms of service—always read the fine print before going commercial.
+                <br>
+                •	<strong>Copyright Gray Areas & Steam’s Red Lines:</strong> Most major jurisdictions currently hold that purely AI-generated content isn't eligible for copyright protection. In short, if your entire game is generated from prompts, you’ll have little legal standing if someone clones it—and conversely, AI makes it dangerously easy to accidentally infringe on existing styles or characters. On the publishing front, Steam’s policy is very clear: behind-the-scenes productivity tools (like coding assistants) don't need to be disclosed, but any player-facing AI content (art, audio, narrative, etc.) must be declared. If your game uses real-time generative AI for live dialogue or images, you must also build strict content-filtering "guardrails." Remember, disclosing AI usage doesn't grant immunity from copyright claims—if your assets look too close to an existing title, you still risk getting pulled from the store.
+            </p>
+        </div>
+
+        <div id="post-1" class="blog-detail-view"
+             style="display: none; background: linear-gradient(#fff, #e0ebfb)">
             <button onclick="backToBlogList()" style="background: none; border: none; color: #3498db; cursor: pointer; font-size: 16px; margin-bottom: 15px;" data-i18n="blog_back">&larr; Back to List</button>
             <div class="post-date">2026-10-28</div>
             <h2 data-i18n="blog_title01">My personal website is officially live!</h2>
             <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
-            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text01">Talk about a long-overdue milestone! I actually learned HTML and CSS two years ago,
-            but between balancing my university studies and diving deep into game development, 
-            the plan to build a website ended up on the back burner... 
-            Until about a month ago, when I decided to brush up on my frontend skills and level up with new backend stack like SQL and MySQL!</p>
-            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text02">I’ve always believed that the best way to learn is by building things. Reading tutorials is one thing, but actually putting theory into code is where the real magic happens. 
-            Unsurprisingly, "easier said than done" hit me pretty hard, and I bumped into plenty of roadblocks along the way. But after two or three weeks of coding and debugging, the initial version of my site is finally live and fully functional!</p>
-            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text03">This is just Version 1.0, though. 
-            I’ll definitely keep refining it—adding cool new features, redesigning the visual style, 
-            and making it even better. Alongside Instagram and X, this space will be my dedicated hub for sharing game dev insights and revealing upcoming game projects. </p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text01">
+                Talk about a long-overdue milestone! I actually learned HTML and CSS two years ago,
+                but between balancing my university studies and diving deep into game development,
+                the plan to build a website ended up on the back burner...
+                Until about a month ago, when I decided to brush up on my frontend skills and level up with new backend stack like SQL and MySQL!
+            </p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text02">
+                I’ve always believed that the best way to learn is by building things. Reading tutorials is one thing, but actually putting theory into code is where the real magic happens.
+                Unsurprisingly, "easier said than done" hit me pretty hard, and I bumped into plenty of roadblocks along the way. But after two or three weeks of coding and debugging, the initial version of my site is finally live and fully functional!
+            </p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text03">
+                This is just Version 1.0, though.
+                I’ll definitely keep refining it—adding cool new features, redesigning the visual style,
+                and making it even better. Alongside Instagram and X, this space will be my dedicated hub for sharing game dev insights and revealing upcoming game projects.
+            </p>
             <p style="margin-bottom: 7px; font-size: 18px" data-i18n="blog_blog01text04">Stay tuned, the fun is just getting started!</p>
         </div>
 
@@ -455,12 +549,90 @@
                 <div class="project-item" style="background: rgba(255, 255, 255, 0.4)">
                     <img src="Image/Project01ComingSoon.png" alt="ScreenCut">
                     <div>
-                        <h3 data-i18n="project_projectTitle01">Adventures of Paw</h3>
+                        <h3><a href="#" onclick="showProjectPost(event, 'project-1')" data-i18n="project_projectTitle01">Adventures of Paw</a></h3>
                         <p style="margin-top: 5px; color: #666; font-size: 14px;" data-i18n="project_projectText01">It was supposed to be a regular afternoon, but Charles hadn't returned home since he went out shopping yesterday. His two pets, Dylan the cat and Amy the dog, were beginning to search of their owner...</p>
                         <p style="margin-top: 5px; color: #666; font-size: 14px;"><strong data-i18n="project_genre">Genre:</strong> <span data-i18n="project_projectGenre01">Singleplayer，Dual Protagonists，2D，Adventure，Puzzle</span> </p>
                     </div>
                 </div>
+                <br>
+                <div class="project-item" style="background: #eee">
+                    <img src="Image/Project02ComingSoon.png" alt="ScreenCut">
+                    <div>
+                        <h3 data-i18n="project_projectTitle02"> Run, Tang! Run!</h3>
+                        <p style="margin-top: 5px; color: #666; font-size: 14px;" data-i18n="project_projectText02">Step into the boots of a curious and agile archaeologist, on a thrilling treasure-hunting expedition across breathtaking worlds! Sprint, leap, and climb your way through trap-filled ancient ruins, sun-drenched lost islands, and floating sanctuaries high above the clouds. Master dynamic 3D platforming challenges, solve ancient puzzles, and collect long-lost relics to uncover the secrets buried at the edge of history!</p>
+                        <p style="margin-top: 5px; color: #666; font-size: 14px;"><strong data-i18n="project_genre">Genre:</strong> <span data-i18n="project_projectGenre02">Platformer, 3D, Adventure, Action, Collectathon, Exploration, Singleplayer </span> </p>
+                    </div>
+                </div>
             </div>
+        </div>
+
+
+        <div id="project-1" class="project-detail-view"
+             style="display: none; background: linear-gradient(#fff, #e0ebfb)">
+            <button onclick="backToProjectList()" style="background: none; border: none; color: #3498db; cursor: pointer; font-size: 16px; margin-bottom: 15px;" data-i18n="blog_back">&larr; Back to List</button>
+            <h2 data-i18n="project01_title">Adventures of Paw - A 2D adventure to find their missing owner</h2>
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+            <p><strong data-i18n="project01_01title" style="font-size:22px;">1. Story Background </strong><img src="Image/CatRun.gif" style="width: 70px; height: 50px;"></p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_01text">
+                Their owner, Charles, hasn't returned home all day—and to make matters worse,
+                a group of mysterious intruders breaks into the house, seemingly searching for a secret.
+                Determined to find their missing owner, Dylan the cat and Amy the dog team up for a grand rescue mission.
+                From suburban villas and bustling shopping malls to the wilderness and industrial factories, this unlikely duo sets off on an unforgettable adventure through the human world.
+            </p>
+            <br>
+            <p><strong data-i18n="project01_02title" style="font-size:22px;">2. Gameplay & Art Style </strong><img src="Image/DogRun.gif" style="width: 70px; height: 50px;"></p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_02text01">
+                •	2D Pixel-Cartoon Style: The game adopts a 2D, side-scrolling, cartoon-style aesthetic that is a perfect fit for this adorable duo and the world they inhabit.
+            </p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_02text02">
+                •	Real-Time Dual Protagonists: Switch seamlessly between Dylan and Amy at any moment to tackle obstacles, utilize unique abilities,
+                and solve puzzles from two distinct perspectives.
+            </p>
+            <img src="Image/Project01foto02.png" , style="width: 99%; height: auto;">
+            <br>
+            <br>
+            <p><strong data-i18n="project01_03title" style="font-size:22px;">3. Character Abilities </strong><img src="Image/CatIdle.gif" style="width: 60px; height: 58px;"></p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_03text01">
+                •	Dylan (The Cat): Agile and level-headed. Excels at high jumps and stealthy hiding,
+                slipping through tight gaps and scaling elevated platforms—making him the ultimate specialist for infiltration and vertical exploration.
+            </p>
+            <img src="Image/Project01foto03.png" , style="width: 99%; height: auto;">
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_03text02">
+                •	Amy (The Dog): Kind-hearted with an extraordinary sense of smell.
+                Uses her signature "Scent Tracking" ability to follow trails left by Charles and strangers, uncovering key clues and hidden items.
+                She is also strong enough to push boxes and clear blocked paths.
+            </p>
+            <img src="Image/Project01foto04.png" , style="width: 99%; height: auto;">
+            <br>
+            <br>
+            <p><strong data-i18n="project01_04title" style="font-size:22px;">4. Stamina Mechanics </strong><img src="Image/DogIdle.gif" style="width: 70px; height: 50px;"></p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_04text01">
+                •	Stamina Consumption: Performing actions like Dylan's leaps or Amy's box-pushing—as well as getting spotted by human NPCs—drains stamina.
+            </p>
+            <img src="Image/Project01foto05.png" , style="width: 99%; height: auto;">
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_04text02">
+                •	Food & Animal Bartering: Scavenge dropped food and pet treats across levels to restore stamina, or share snacks with stray animals in exchange for valuable tips and assistance.
+            </p>
+            <img src="Image/Project01foto06.png" , style="width: 99%; height: auto;">
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_04text03">
+                •	Failure Branches: Getting caught by an NPC or being spotted with zero stamina forcefully ends the current mission, branching the narrative into entirely different follow-up levels.
+            </p>
+            <img src="Image/Project01foto07.png" , style="width: 99%; height: auto;">
+            <br>
+            <br>
+            <p><strong data-i18n="project01_05title" style="font-size:22px;">5. Level Design & Branching Narrative</strong><img src="Image/ChatMark.gif" style="width: 50px; height: 50px;"></p>
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_05text01">
+                •	Branching Storylines: Key levels feature pivotal story nodes where your choices—and whether you succeed or fail a mission—unlock completely different narrative paths.
+            </p>
+            <img src="Image/Project01foto08.png" , style="width: 99%; height: auto;">
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_05text02">
+                •	Day/Night Cycles & Dynamic Maps: Explore apartment complexes, malls, office buildings, factories, harbors, and train stations across day and night. Depending on your story route, the same overarching map reveals different scenes, dialogues, and puzzles.
+            </p>
+            <img src="Image/Project01foto09.png" , style="width: 99%; height: auto;">
+            <p style="margin-bottom: 7px; font-size: 18px" data-i18n="project01_05text03">
+                •	Environmental Storytelling & Deduction: Clues are woven into NPC conversations and character monologues. Experience the journey from multiple angles as you piece together the truth behind Charles's disappearance.
+            </p>
+            <img src="Image/Project01foto10.png" , style="width: 99%; height: auto;">
         </div>
 
         <!-- About Me 内容 -->
@@ -535,6 +707,9 @@
             document.querySelectorAll('.blog-detail-view').forEach(view => {
                 view.style.display = 'none';
             });
+            document.querySelectorAll('.project-detail-view').forEach(view => {
+                view.style.display = 'none';
+            });
 
             // 隐藏所有的内容板块
             const tabContents = document.querySelectorAll('.tab-content');
@@ -566,26 +741,55 @@
                 header_title: "欢迎来到我的个人空间",
                 header_subtitle: "记录代码、游戏与独立开发日常",
                 lang_btn: "语言 / Language ▼",
-                nav_home: "主页",
-                nav_blog: "博客&日常",
-                nav_projects: "项目",
-                nav_about: "关于开发者",
-                nav_contact: "与我联系",
+                nav_home: '<img src="Image/Home.png" class="nav_avatar" alt="Home">主页',
+                nav_blog: '<img src="Image/Blog.png" class="nav_avatar" alt="Blog">博客&日常',
+                nav_projects: '<img src="Image/Projects.png" class="nav_avatar" alt="Projects">项目',
+                nav_about: '<img src="Image/AboutMe.png" class="nav_avatar" alt="About">关于开发者',
+                nav_contact: '<img src="Image/ContactMe.png" class="nav_avatar" alt="Contact">与我联系',
                 home_heading: "网页介绍",
                 home_text1: "你好！欢迎来到我的个人独立博客。这里主要记录我的游戏开发历程、技术分享以及日常生活点滴。",
                 home_text2:"你可以通过上方的导航栏查看我的项目作品、了解我的个人经历，或者与我取得联系。",
                 blog_back: "返回列表",
                 blog_title01: "我的第一个网站正式登场!",
                 blog_intro01: "独立游戏开发之旅才刚刚开始，敬请期待！",
+                blog_intro02: "AI 做游戏到底能走到哪一步？",
                 blog_blog01text01: "人们常说“好的开始是成功的一半”，但对我来说，这个网站的开端更像是一个藏了很久的彩蛋！其实早在两年前我就学过了 HTML 和 CSS，但后来因为死磕学业和埋头学习怎么做游戏，建站的计划就被搁置在角落里吃灰了……直到一个月前，我才重新拾起这些前端知识，顺便把SQL、MySQL等数据库技能补习了一遍！",
                 blog_blog01text02: "我始终相信：“实践才是最好的教程”。光是在脑子里“觉得自己学会了”毫无意义，直接动手写代码才是硬道理。果然，事实证明“眼睛懂了，手还没懂”，中间踩了不坑。不过在经历了两三个星期的努力，这个小网页终于成功搭建起来了！目前的功能虽然朴素，但该有的都有啦~",
                 blog_blog01text03: "当然，这只是 1.0 基础版本。未来我还会继续迭代更新——加入更多酷炫的新功能、重新设计更具游戏感的主题视觉等等。除了 Instagram 和 X（Twitter）之外，这里将成为我分享独立游戏开发心得、发布最新游戏项目的专属阵地。",
                 blog_blog01text04: "独立游戏开发之旅才刚刚开始，敬请期待！",
+                blog_title02: "当独立开发遇上AI：一年磨一剑，还是一句话生成一个世界？",
+                blog_blog02text01: '最近在网上冲浪，总能刷到各种用 AI 做游戏的演示视频和截图。看着别人输入几句提示词、传一张参考图，短短几分钟就变出一个能跑能跳的小游戏，心里真是五味杂陈。<br>一方面不得不感叹现在工具的进化速度；另一方面，低头看看自己断断续续打磨了一年、马上就要登上 Steam 的第一款独立游戏，心里多少有点“拿不出手”的自我怀疑——毕竟我从零开始啃引擎、写脚本、扣像素、做模型，每一步都是实打实熬过来的，而别人似乎按个回车键就完成了。<br>不过，我并不是那种对新技术排斥的人。从 AI 普及到现在，我在日常开发里也没少用它，只是我的用法比较“务实”：更多是把它当成随叫随到的技术顾问，帮我理清报错逻辑、优化 C# 脚本，或者在遇到卡壳的引擎操作时问个思路。<br>冷静下来想想，AI 做游戏到底能走到哪一步？其实共识还是很明确：“提示词直出”确实能在几分钟内变出一个可玩的原型，但要做出真正能上架、有手感、美术统一的完整作品，依然离不开人的主导。<br>如果把当下的 AI 游戏开发方式归个类，我大致可以分为两条截然不同的路：',
+                blog_blog02texttitel01: "方向一：完全以 AI 为主，一句话“变”出游戏（适合快速验证灵感）",
+                blog_blog02text02: '这一类工具走的是“提示词直出”的路线，代表平台就是 Rosebud（类似的还有 Websim 等）。<br>它的玩法非常直观，甚至不需要你懂代码：你只需要在浏览器里用一两句话描述清楚你想要的游戏玩法、视角、胜负条件和画风，系统就会自动在后台把你的想法翻译成代码（比如用 Three.js 跑 3D 画面），同时生成配套的 2D/3D 素材和音效。几分钟后，一个能直接试玩的网页游戏就诞生了。如果觉得哪里不对，就像聊天一样告诉它“提高生命值”或者“把敌人速度调慢”，满意了就能直接生成链接分享给朋友玩。<br> <strong>我的看法：</strong> 这类工具用来做脑暴、测验某个核心玩法到底好不好玩，或者做个小礼物送朋友，简直是神器。但它本质上更像一个“黑盒”——画面精度有限、很难做复杂的系统架构，也很难真正导出变成一个可长期维护的商业项目。',
+                blog_blog02texttitel02: '方向二：按部就班做开发，把 AI 当作“超级工具”',
+                blog_blog02text03: '对于像我这样习惯自己掌控全局的开发者来说，我还是偏好于老老实实在游戏引擎里搭建项目，让 AI 深度融入工作流，成为我的“副驾驶”。<br>除了像 Codex 这样能直接在代码仓库里写逻辑、跑测试的编程智能体之外，我最关注的还是直接住进引擎里的 Unity AI（集成在 Unity 6 及以上版本中）。<br>它和网页聊天框里的 AI 最大的不同在于“它看得见你的整个项目”。平时我们把脚本丢给通用大模型，它其实是“盲人摸象”，因为 Unity 里很多功能取决于你挂了哪些组件、Inspector 面板里填了什么数值。而 Unity AI 直接连通了你的场景层级、资源库和面板数据<br>•	<strong>写代码与修 Bug： </strong>可以直接在编辑器里让它帮你排查控制台报错、自动创建并连接 GameObject，甚至顺手写几个提高效率的自定义编辑器小工具。<br>•	<strong>快速搭架子： </strong>它的生成器能直接在引擎里捏出临时的精灵图、材质、音效或简单的 3D 预制体。我们在做关卡白盒（Blockout）测试手感时，不用再为了等美术素材而干瞪眼，先用占位素材跑通玩法，后期再替换成正式美术（而且系统会自动给这些临时素材打上“AI生成”的标签，上线前清理起来非常省心）。<br>•	<strong>开放生态： </strong>如果你习惯了用 Claude 或 Gemini，也能通过接口把它们接进 Unity 共享项目上下文，不需要强迫自己换工具。',
+                blog_blog02texttitel03: "AI做游戏的优势，以及必须留意的坑",
+                blog_blog02text04: '聊完了具体工具，结合我自己这段时间的摸索和观察，我想把 AI 介入游戏开发的核心优势和潜在的坑做个简单的梳理，算是给自己的开发笔记，也给同样在折腾的朋友提个醒。为什么掌握AI工具，对做游戏越来越重要，因为有不可否认的几大优势<br>•	<strong>极致的试错效率：</strong>一句话就能试出一个玩法原型。过去想验证一个脑洞，往往要先搭框架、找素材，忙活一两周才能看到雏形；现在借助 AI，几分钟就能跑出一个能玩的原型。这意味着在投入大量美术和程序精力之前，就能低成本验证“这玩法到底好不好玩”<br>•	<strong>验证与除错进入“闭环”：  </strong>现在的工具不再只是帮你补全几行代码，而是能直接看懂项目结构、自己运行游戏、读取真实报错甚至自己试玩微调。对于独立开发者来说，相当于多了一个不知疲倦的测试员兼初级程序，大大减轻了排查低级 Bug 的心智负担。了解到这个，我的下一个个人项目也多了一个助手！<br>•	<strong>行业已经把它当成日常: </strong>如今在 Steam 上，带 AI 披露标记的新游戏比例已经相当可观，AI 辅助开发成了行业日常。按一位开发者对约 53,600 款 Steam 游戏的统计，2026年新发布游戏中带 AI 披露标记的比例到7月中旬已达 30.8%（Games.gg）；另一项统计称2026年10月发布的游戏中这一比例为 49.9%（FinalBoss）。两份数据口径不同，不宜直接比较，但方向一致（这个比例本身并不代表玩家遇到的 AI 内容有多少）。<br><br><strong>局限性与避坑指南（用得越深越要小心）</strong><br>•	<strong>技术天花板与“维护债务”：</strong> 提示词直出的工具目前大多只能稳定产出小体量的 2D 或网页游戏，离真正的商业级 3D 还有距离；即便用编程智能体写出核心逻辑，成套的美术、音效依然需要人来把控风格统一。更现实的一点是“维护债务”——如果 AI 写的代码你自己根本看不懂，后期一旦出 Bug 或想加新功能，改起来简直是一场灾难。<br>•	<strong>平台绑定与安全盲区：</strong> 很多网页端“一键生成游戏”的平台会把作品托管在自家服务器上，导出受限，甚至条款里暗藏内容授权限制，商业开发前一定要看清规则。<br>•	<strong>版权灰色地带与 Steam 规则红线： </strong> 目前主流司法辖区普遍认为“纯 AI 生成的内容不受版权保护”，也就是说，如果你的游戏全靠提示词生成，别人照搬抄袭你也很难维权；反过来，AI 极易模仿现有作品，一不小心就会踩中抄袭雷区。在发行层面，Steam 对 AI 的态度非常明确：后台写代码的效率工具不用管，但凡是玩家能直接看到、听到的 AI 内容（美术、音频、剧情等）都必须如实披露；如果游戏里接入了实时生成的 AI 对话或画面，还得做好防违规的内容过滤“护栏”。而且要注意，披露了不代表免责，一旦涉嫌美术风格或素材侵权，依然会面临下架风险。',
                 proj_desc: "这里将展示游戏和开发项目...",
                 project_genre: "游戏类别:",
                 project_projectTitle01: "宠爪历险记",
                 project_projectText01: "原本只是普通的中午，但是主人查尔斯自前一天下午出门买东西就再也没回来了。他的两个小宠物，猫咪迪伦和小狗艾米开始找寻它们的主人...",
                 project_projectGenre01: "单人,双主角,2D,冒险,解谜",
+                project_projectTitle02: "跑跑糖（暂定）",
+                project_projectText02: "玩家将化身充满好奇心的考古学家，踏上一场跨越奇幻地貌的寻宝大冒险！从机关重重的神秘古代遗迹、阳光明媚的失落海岛，甚至云端之上的天空之巅。在立体多变的 3D 关卡中灵活奔跑、跳跃与攀爬，破解远古谜题，收集失落的珍贵文物，揭开沉睡在历史尽头的秘密！",
+                project_projectGenre02: "平台跳跃、3D、冒险、动作、宝物收集，探索、单人 ",
+                project01_title: "宠爪历险记 - 一场2D寻找主人的冒险",
+                project01_01title: "1. 故事背景",
+                project01_02title: "2. 游戏操作特点",
+                project01_03title: "3. 角色特点与技能",
+                project01_04title: "4. 体力机制",
+                project01_05title: "5. 关卡与多线叙事特点",
+                project01_01text: "主人查尔斯（Charles）出门一整天未归，一群神秘人却趁机闯入家中，似乎在寻找什么秘密。为了找回下落不明的主人，家里的猫咪迪伦（Dylan）和小狗艾米（Amy）决定联手踏上寻主之旅。从别墅到商场，从荒野到工厂，这对性格迥异的毛孩子搭档将在人类世界中展开一场充满未知的冒险。",
+                project01_02text01: "•	2D 像素卡通画风： 作品采用了卡通的二维横版风格，更契合这对可爱的搭档及其所在的世界。",
+                project01_02text02: "•	双主角实时切换： 玩家可根据眼前的障碍与解谜需求，随时切换操控迪伦或艾米，体验两种截然不同的行动方式与解谜视角。",
+                project01_03text01: "•	迪伦（猫咪）： 身手敏捷、头脑冷静。擅长高处跳跃与隐蔽躲藏，能轻松钻过狭窄缝隙或跃上高台，是执行潜入与高空探索的专家。",
+                project01_03text02: "•	艾米（小狗）： 性格善良、嗅觉超群。拥有专属的“气味追踪”技能，能嗅出主人与陌生人残留的轨迹，锁定关键线索与隐藏物品；同时力气较大，可以推动箱子等重物开辟道路。",
+                project01_04text01: "•	技能与潜行消耗： 猫咪的跳跃、小狗的推箱动作，以及被人类 NPC 发现时都会消耗体力值。",
+                project01_04text02: "•	食物补充与社交： 在关卡中搜寻掉落的食物或猫狗饼干即可恢复体力，偶尔还能用食物与其他流浪动物“交换”情报或请求帮忙。",
+                project01_04text03: "•	失败分支： 当体力耗尽被发现，或任意一名角色被 NPC 抓住时，当前关卡任务将强制结束，并直接触发走向不同剧情的后续关卡。",
+                project01_05text01: "•	多分支故事线： 部分关卡设有关键分歧点，玩家的选择或任务的成败将开启截然不同的剧情走向。",
+                project01_05text02: "•	多时段与动态地图： 关卡涵盖白天与黑夜，场景横跨街区公寓、大型商场、办公楼、工厂、港口与火车站。同一张大地图在不同故事线下，会呈现出差异化的场景细节、对话与谜题。",
+                project01_05text03: "•	碎片化细节推理： 线索巧妙隐藏在 NPC 闲聊、环境互动与角色独白中。玩家在通过不同视角推进寻主主线的同时，也能一步步拼凑出事件背后的真相。",
                 about_desc: "你好啊，我叫斯蒂芬（Stephen），你也可以叫我糖，欢迎来到我的个人小天地！",
                 about_text01: "我是一个拥有工程力学与计算机科学双学士学位的游戏宅男",
                 about_text02: "作为一名热爱游戏也沉迷游戏的开发者，这里是我记录游戏开发日常、分享自己独立游戏项目的专属空间。",
@@ -601,26 +805,55 @@
                 header_title: "Welcome to StephenTang's space!",
                 header_subtitle: "Documenting games and indie development",
                 lang_btn: "Language ▼",
-                nav_home: "Home Page",
-                nav_blog: "Blog & Moment",
-                nav_projects: "Projects",
-                nav_about: "About Me",
-                nav_contact: "Contact",
+                nav_home: '<img src="Image/Home.png" class="nav_avatar" alt="Home">Home Page',
+                nav_blog: '<img src="Image/Blog.png" class="nav_avatar" alt="Blog">Blog & Moment',
+                nav_projects: '<img src="Image/Projects.png" class="nav_avatar" alt="Projects">Projects',
+                nav_about: '<img src="Image/AboutMe.png" class="nav_avatar" alt="About">About Me',
+                nav_contact: '<img src="Image/ContactMe.png" class="nav_avatar" alt="Contact">Contact',
                 home_heading: "Home Page",
                 home_text1: "Hello! Welcome to my personal indie blog. Here I document my game development journey, tech tips, and daily life.",
                 home_text2: "You can use the navigation bar above to view my projects, learn about my background, or get in touch with me.",
                 blog_back: "Back to List",
                 blog_title01: "My personal website is officially live!",
                 blog_intro01: "Stay tuned, the fun is just getting started!",
+                blog_intro02: "How far can AI really go in game development?",
                 blog_blog01text01: "Talk about a long-overdue milestone! I actually learned HTML and CSS two years ago,but between balancing my university studies and diving deep into game development,the plan to build a website ended up on the back burner...Until about a month ago, when I decided to brush up on my frontend skills and level up with new backend stack like SQL and MySQL!",
                 blog_blog01text02: "I’ve always believed that the best way to learn is by building things. Reading tutorials is one thing, but actually putting theory into code is where the real magic happens. Unsurprisingly, 'easier said than done' hit me pretty hard, and I bumped into plenty of roadblocks along the way.But after two or three weeks of coding and debugging, the initial version of my site is finally live and fully functional!",
                 blog_blog01text03: "This is just Version 1.0, though. I’ll definitely keep refining it—adding cool new features, redesigning the visual style,and making it even better.Alongside Instagram and X, this space will be my dedicated hub for sharing game dev insights and revealing upcoming game projects.",
                 blog_blog01text04: "Stay tuned, the fun is just getting started!",
+                blog_title02: "When Indie Dev Meets AI: A Year of Crafting vs.Generating a World in One Sentence ?" ,      
+                blog_blog02text01: 'Scrolling through the internet lately, I keep running into videos and screenshots of games made entirely with AI.Watching someone type a few prompts, upload a reference image, and conjure up a playable mini- game in just a few minutes leaves me with mixed feelings.<br>On one hand, I can’t help but marvel at how fast modern tools are evolving.On the other hand, looking down at my own first indie game—a project I’ve been painstakingly polishing on and off for a year and am about to launch on Steam—I couldnt help feeling a brief wave of self-doubt.I learned the engine from scratch, wrote every script, tweaked pixel art, and built 3D models step by step, while others seemingly hit "Enter" and called it a day.<br>That said, I’m certainly not someone who shuts the door on new technology.Since AI went mainstream, I’ve used it quite a bit in my daily development, though my approach is fairly pragmatic: I treat it more like an on- call technical consultant to help untangle error logs, optimize C# scripts,or brainstorm solutions when I hit a wall in the engine.<br>Taking a step back, how far can AI really go in game development ? The consensus is actually quite clear: "prompt-to-game" tools can generate a playable prototype in minutes, but shipping a polished, release - ready game with great game feel and cohesive art still requires human direction.<br>If we categorize current AI game development workflows, they roughly split into two distinct paths: ',
+                blog_blog02texttitel01: "Path 1: AI-First Generation — Turning a Single Sentence into a Game (Best for Rapid Prototyping)",
+                blog_blog02text02: 'This approach focuses on "prompt-to-game" platforms, with Rosebud being a prime example (alongside similar tools like Websim).<br>The workflow is remarkably intuitive and requires zero coding knowledge.You simply describe your gameplay, camera perspective,win/ loss conditions, and art style in a sentence or two right inside your browser.Behind the scenes, the platform translates your ideas into code(such as JavaScript and Three.js for 3D)while simultaneously generating matching 2D / 3D assets and audio.Within minutes, you have a live,playable web game.Need a tweak? Just ask in the chat—"increase health" or "make the enemies slower"—and once you are happy,you can share a playable link with friends.<br> <strong>My Take:</strong> Tools like this are fantastic for brainstorming, validating whether a core mechanic is actually fun, or whipping up a quick gift for friends.However, they essentially operate as a "black box"—visual fidelity has its limits, complex system architectures are hard to pull off, and exporting them into a scalable,long- term commercial project remains difficult.',
+                blog_blog02texttitel02: 'Path 2: Traditional Development with AI as a "Super Tool"',
+                blog_blog02text03: 'For developers like me who prefer keeping full control over their projects, I still prefer building the game step-by-step inside a traditional engine, integrating AI deeply into the workflow as a "co-pilot."<br>Beyond coding agents like Codex that can write logic and run tests directly inside a code repository, what excites me most is Unity AI—a suite of tools built directly into Unity 6 and newer editors.<br>The biggest difference between Unity AI and a standard web chatbot is that it can actually see your entire project.Normally, pasting a script into a general LLM is like the blind men feeling an elephant, because behavior in Unity relies heavily on attached components and serialized Inspector values.Unity AI connects directly to your scene hierarchy, asset library, and Inspector data:<br>•	<strong>Coding & Debugging:</strong> You can ask the Assistant right inside the editor to fix console errors, create and wire up GameObjects, or even write a few custom editor tools to speed up your workflow.<br>•	<strong>Rapid Prototyping: </strong>Its built-in generators let you whip up placeholder sprites, textures, audio, or simple 3D prefabs directly in the editor. When blocking out levels to test gameplay feel, you no longer have to stall while waiting for final art—just use placeholders first and swap them out later (plus, Unity automatically tags generated assets with metadata, making them easy to audit and replace before launch).<br>•	<strong>Open Ecosystem: </strong>If you are already comfortable with Claude or Gemini, you can plug them in via interfaces to share the same deep project context without abandoning your favorite tools.',
+                blog_blog02texttitel03: "The Upsides of AI in Game Dev—And the Pitfalls to Watch Out For",
+                blog_blog02text04: 'Now that we’ve looked at the tools, I want to wrap up with a quick breakdown of the core advantages and potential pitfalls of bringing AI into game development, based on my own experiments and observations. Consider this a personal dev log—and a friendly heads-up for fellow indie creators. Why is mastering AI tools becoming increasingly important for game dev? Because of several undeniable advantages:<br>•	<strong>Unmatched Prototyping Speed:</strong> Testing a raw idea in just one sentence.In the past, testing a new concept meant setting up frameworks and hunting for assets, often taking a week or two just to get a rough prototype.With AI, you can spin up something playable in minutes.This lets you validate whether a core mechanic is actually fun before sinking serious time and energy into art and engineering.<br>•	<strong>Closed-Loop Testing and Debugging: </strong>Modern AI tools do much more than just autocomplete a few lines of code—they can understand project structures, run the game, read real error logs, and even playtest to tweak values.For a solo dev, it feels like having a tireless QA tester and junior programmer on board, taking a huge mental load off hunting down trivial bugs.Knowing this, my next personal project will definitely have one more assistant on board!<br>•	<strong>Industry Normalization: </strong>Games carrying AI disclosure tags on Steam have become a common sight; AI - assisted development is simply part of the modern workflow now.According to one developers tracking of roughly 53,600 Steam games, 30.8% of new releases in 2026 carried AI disclosure tags by mid-July (Games.gg), another tracker put that figure at 49.9% for October 2026 releases (FinalBoss). While the two datasets use different methodologies and should not be compared one - to - one, the upward trend is undeniable(though this percentage alone does not measure how much AI content players actually encounter in-game).<br><br><strong>Limitations & Pitfalls (Proceed with Caution)</strong><br>•	<strong>Quality Ceilings and "Maintenance Debt":</strong> Prompt-to-game platforms can reliably produce small 2D or web games, but they are still far from delivering commercial-grade 3D titles. Even when coding agents handle the core logic, cohesive art and audio still require a human touch. More importantly, beware of "maintenance debt"—if AI writes complex code that you don not actually understand, fixing bugs or adding new features later on will turn into an absolute nightmare.<br>•	<strong>Platform Lock-in and Security Blind Spots:</strong> Many web-based, one-click game generators host projects on their own servers, restricting exports or tucking broad content licenses into their terms of service—always read the fine print before going commercial.<br>•	<strong>Copyright Gray Areas & Steam’s Red Lines:</strong> Most major jurisdictions currently hold that purely AI-generated content is not eligible for copyright protection. In short, if your entire game is generated from prompts, you’ll have little legal standing if someone clones it—and conversely, AI makes it dangerously easy to accidentally infringe on existing styles or characters. On the publishing front, Steam’s policy is very clear: behind-the-scenes productivity tools (like coding assistants) do not need to be disclosed, but any player-facing AI content (art, audio, narrative, etc.) must be declared. If your game uses real-time generative AI for live dialogue or images, you must also build strict content-filtering "guardrails." Remember, disclosing AI usage does not grant immunity from copyright claims—if your assets look too close to an existing title, you still risk getting pulled from the store.',                                                                                       
                 proj_desc: "Games and development projects will be displayed here...",
                 project_genre: "Genre:",
                 project_projectTitle01: "Adventures of Paw",
                 project_projectText01: "It was supposed to be a regular afternoon, but Charles hadn't returned home since he went out shopping yesterday. His two pets, Dylan the cat and Amy the dog, were beginning to search of their owner...",
                 project_projectGenre01: "Singleplayer，Dual Protagonists，2D，Adventure，Puzzle",
+                project_projectTitle02: "Run, Tang! Run!",
+                project_projectText02: "Step into the boots of a curious and agile archaeologist, on a thrilling treasure-hunting expedition across breathtaking worlds! Sprint, leap, and climb your way through trap-filled ancient ruins, sun-drenched lost islands, and floating sanctuaries high above the clouds. Master dynamic 3D platforming challenges, solve ancient puzzles, and collect long-lost relics to uncover the secrets buried at the edge of history!",
+                project_projectGenre02: "Platformer, 3D, Adventure, Action, Collectathon, Exploration, Singleplayer ",
+                project01_title: "Adventures of Paw - A 2D adventure to find their missing owner",
+                project01_01title: "1. Story Background",
+                project01_02title: "2. Gameplay & Art Style",
+                project01_03title: "3. Character Abilities",
+                project01_04title: "4. Stamina Mechanics",
+                project01_05title: "5. Level Design & Branching Narrative",
+                project01_01text: "Their owner, Charles, hasn't returned home all day—and to make matters worse, a group of mysterious intruders breaks into the house, seemingly searching for a secret. Determined to find their missing owner, Dylan the cat and Amy the dog team up for a grand rescue mission. From suburban villas and bustling shopping malls to the wilderness and industrial factories, this unlikely duo sets off on an unforgettable adventure through the human world.",
+                project01_02text01: "•	2D Pixel-Cartoon Style: The game adopts a 2D, side-scrolling, cartoon-style aesthetic that is a perfect fit for this adorable duo and the world they inhabit.",
+                project01_02text02: "•	Real-Time Dual Protagonists: Switch seamlessly between Dylan and Amy at any moment to tackle obstacles, utilize unique abilities, and solve puzzles from two distinct perspectives.",
+                project01_03text01: "•	Dylan (The Cat): Agile and level-headed. Excels at high jumps and stealthy hiding, slipping through tight gaps and scaling elevated platforms—making him the ultimate specialist for infiltration and vertical exploration.",
+                project01_03text02: "•	Amy (The Dog): Kind-hearted with an extraordinary sense of smell. Uses her signature 'Scent Tracking' ability to follow trails left by Charles and strangers, uncovering key clues and hidden items. She is also strong enough to push boxes and clear blocked paths.",
+                project01_04text01: "•	Stamina Consumption: Performing actions like Dylan's Jump or Amy's box-pushing—as well as getting spotted by human NPCs—drains stamina.",
+                project01_04text02: "•	Food & Animal Bartering: Scavenge dropped food and pet treats across levels to restore stamina, or share snacks with stray animals in exchange for valuable tips and assistance.",
+                project01_04text03: "•	Failure Branches: Getting caught by an NPC or being spotted with zero stamina forcefully ends the current mission, branching the narrative into entirely different follow-up levels.",
+                project01_05text01: "•	Branching Storylines: Key levels feature pivotal story nodes where your choices—and whether you succeed or fail a mission—unlock completely different narrative paths.",
+                project01_05text02: "•	Day/Night Cycles & Dynamic Maps: Explore apartment complexes, malls, office buildings, factories, harbors, and train stations across day and night. Depending on your story route, the same overarching map reveals different scenes, dialogues, and puzzles.",
+                project01_05text03: "•	Environmental Storytelling & Deduction: Clues are woven into NPC conversations and character monologues. Experience the journey from multiple angles as you piece together the truth behind Charles's disappearance.",
                 about_desc: "Hey, I'm Stephen, but you can call me Tang. Welcome to my personal website!",
                 about_text01: "I'm a otaku with double bachelor's degrees in engineering mechanics  and computer science.",
                 about_text02: "As an avid gamer turned developer, this is my little corner of the web where I document my game development journey and share my Indie-projects.",
@@ -636,26 +869,55 @@
                 header_title: "Willkommen im StephenTang-Space!",
                 header_subtitle: "Dokumentation von Spielen und Indie-Entwicklung",
                 lang_btn: "Sprache ▼",
-                nav_home: "Startseite",
-                nav_blog: "Blog & Moment",
-                nav_projects: "Projekte",
-                nav_about: "Über mich",
-                nav_contact: "Kontakt",
+                nav_home: '<img src="Image/Home.png" class="nav_avatar" alt="Home">Startseite',
+                nav_blog: '<img src="Image/Blog.png" class="nav_avatar" alt="Blog">Blog & Moment',
+                nav_projects: '<img src="Image/Projects.png" class="nav_avatar" alt="Projects">Projekte',
+                nav_about: '<img src="Image/AboutMe.png" class="nav_avatar" alt="About">Über mich',
+                nav_contact: '<img src="Image/ContactMe.png" class="nav_avatar" alt="Contact">Kontakt',
                 home_heading: "Startseite & Einführung",
                 home_text1: "Hallo! Willkommen in meinem persönlichen Indie-Blog. Hier dokumentiere ich meine Reise in der Spieleentwicklung und den Technikalltag.",
                 home_text2: "Über die Navigationsleiste oben haben Sie die Möglichkeit, meine Projekte anzusehen, mehr über meinen Hintergrund zu erfahren oder mit mir in Kontakt zu treten.",
                 blog_back: "Zurück zur Liste",
                 blog_title01: "Meine eigene Website ist endlich online!",
                 blog_intro01: "Bleibt dran, es kommt noch einiges auf euch zu!",
+                blog_intro02: "Wie weit KI in der Spieleentwicklung wirklich gehen kann?",
                 blog_blog01text01: "Das wurde aber auch Zeit! HTML und CSS hatte ich mir zwar schon vor zwei Jahren beigebracht, aber wegen des Studiums und meiner Spieleentwicklung wanderte die Idee einer eigenen Website erst mal auf den Stapel der unerledigten Dinge ... Vor einem Monat habe ich den Faden wieder aufgegriffen, den alten Stoff aufgefrischt und mir direkt noch neues Zeug wie SQL und MySQL draufgepackt!",
                 blog_blog01text02: "Ich bin fest davon überzeugt: Das beste Lernen ist das Anwenden! Es bringt nichts, sich nur Theorie reinzuziehen – man muss den Code einfach selbst tippen und schrubben. Und tja ... was auf dem Papier einfach aussieht, hat in der Praxis dann doch für den einen oder anderen rauchenden Kopf gesorgt. Aber nach zwei bis drei Wochen Herumprobieren und Bug-Fixing steht das Grundgerüst endlich! Alle wichtigen Funktionen sind am Start.",
                 blog_blog01text03: "Das ist natürlich erst der Anfang. In Zukunft werde ich die Seite fleißig weiter verbessern – mit coolen neuen Features, einem frischen Design und vielem mehr. Neben Instagram und X wird dieser Ort mein persönliches Hauptquartier, um Entwicklertagebücher (Devlogs) zu teilen und meine zukünftigen Spielprojekte anzukündigen.",
                 blog_blog01text04: "Bleibt dran, es kommt noch einiges auf euch zu!",
+                blog_title02: "Wenn Indie-Entwicklung auf KI trifft: Ein Jahr Feinschliff oder eine ganze Welt mit einem Satz?",
+                blog_blog02text01: 'Wenn ich in letzter Zeit durch das Internet scrolle, stoße ich ständig auf Videos und Screenshots von Spielen, die komplett mit KI erstellt wurden. Zu sehen, wie jemand ein paar Prompts eintippt, ein Referenzbild hochlädt und innerhalb weniger Minuten ein spielbares Minispiel hervorzaubert, löst bei mir gemischte Gefühle aus.<br>Einerseits kann ich nur darüber staunen, wie rasant sich moderne Werkzeuge weiterentwickeln. Andererseits blicke ich auf mein eigenes erstes Indie-Spiel – ein Projekt, an dem ich ein ganzes Jahr lang immer wieder gefeilt habe und das bald auf Steam erscheint – und konnte ein kurzes Gefühl der Selbstzweifel nicht unterdrücken. Schließlich habe ich die Engine von Grund auf gelernt, jedes Skript selbst geschrieben, Pixel-Art optimiert und 3D-Modelle gebaut, während andere scheinbar einfach auf „Enter“ drücken und fertig sind.<br>Allerdings bin ich niemand, der sich neuen Technologien verschließt. Seit KI im Alltag angekommen ist, nutze ich sie in meiner täglichen Entwicklungsarbeit durchaus regelmäßig, wenn auch eher pragmatisch: Für mich ist sie ein technischer Berater auf Abruf, der mir hilft, Fehlerprotokolle zu entwirren, C#-Skripte zu optimieren oder Lösungsansätze zu finden, wenn ich in der Engine mal feststecke.<br>Wenn man einen Schritt zurücktritt und nüchtern betrachtet, wie weit KI in der Spieleentwicklung wirklich gehen kann, ist die Einigkeit eigentlich recht klar: „Prompt-to-Game“-Tools können zwar innerhalb von Minuten einen spielbaren Prototyp generieren, doch ein ausgereiftes, marktreifes Spiel mit gutem Spielgefühl und einem stimmigen Grafikstil erfordert nach wie vor menschliche Führung.<br>Teilt man die aktuellen KI-Workflows in der Spieleentwicklung grob ein, ergeben sich zwei völlig unterschiedliche Wege: ',
+                blog_blog02texttitel01: "Weg 1: KI-gesteuerte Generierung – Mit einem Satz zum Spiel (Ideal für schnelle Ideenfindung)",
+                blog_blog02text02: 'Dieser Ansatz setzt auf „Prompt-to-Game“-Plattformen, wofür Rosebud ein Paradebeispiel ist (neben ähnlichen Tools wie Websim).<br>Der Ablauf ist denkbar intuitiv und erfordert keinerlei Programmierkenntnisse: Man beschreibt Gameplay, Kameraperspektive, Sieg-/Niederlagenbedingungen und Grafikstil in ein oder zwei Sätzen direkt im Browser. Im Hintergrund übersetzt die Plattform die Ideen in Code (etwa JavaScript und Three.js für 3D) und generiert gleichzeitig passende 2D-/3D-Assets sowie Soundeffekte. Wenige Minuten später hat man ein spielbares Web-Game. Wer etwas ändern möchte, schreibt es einfach in den Chat – etwa „Lebensenergie erhöhen“ oder „Gegner langsamer machen“ – und kann am Ende direkt einen Link mit Freunden teilen.<br> <strong>Meine Meinung: </strong> Für Brainstorming, um schnell zu testen, ob eine Kernmechanik wirklich Spaß macht, oder als kleines Geschenk für Freunde sind solche Tools fantastisch. Im Grunde bleiben sie jedoch eine „Blackbox“ – die grafische Qualität stößt an Grenzen, komplexe Systemarchitekturen sind kaum umsetzbar und ein Export in ein langfristig wartbares, kommerzielles Projekt ist schwierig.',
+                blog_blog02texttitel02: 'Weg 2: Klassische Entwicklung mit KI als „Super-Werkzeug“',
+                blog_blog02text03: 'Für Entwickler wie mich, die gerne die volle Kontrolle über ihr Projekt behalten, bevorzuge ich es nach wie vor, das Spiel Schritt für Schritt in einer klassischen Engine aufzubauen und die KI als „Co-Pilot“ tief in den Workflow zu integrieren.<br>Neben Coding-Agenten wie Codex, die direkt im Code-Repository Logik schreiben und Tests ausführen, finde ich vor allem Unity AI spannend – eine Tool-Suite, die direkt in Unity 6 und neuere Editoren integriert ist.<br>Der größte Unterschied zwischen Unity AI und einem gewöhnlichen Web-Chatbot besteht darin, dass sie dein gesamtes Projekt sehen kann. Wenn man normalerweise ein Skript in ein allgemeines Sprachmodell kopiert, tappt dieses im Dunkeln, weil das Verhalten in Unity stark davon abhängt, welche Komponenten angehängt und welche Werte im Inspector eingestellt sind. Unity AI hingegen ist direkt mit der Szenenhierarchie, der Asset-Bibliothek und den Inspector-Daten verknüpft:<br>•	<strong>Programmieren & Debugging: </strong>Man kann den Assistant direkt im Editor bitten, Konsolenfehler zu beheben, GameObjects zu erstellen und zu verknüpfen oder sogar ein paar eigene Editor-Tools zu schreiben, die den Alltag erleichtern.<br>•	<strong>Schnelles Prototyping: </strong>Die integrierten Generatoren erstellen direkt im Editor Platzhalter-Sprites, Texturen, Audio oder einfache 3D-Prefabs. Beim Level-Blockout zum Testen des Spielgefühls muss man nicht mehr tatenlos auf finale Grafiken warten – man nutzt erst Platzhalter und tauscht sie später aus (zudem versieht Unity generierte Assets automatisch mit Metadaten, was das Aufräumen vor dem Release enorm erleichtert).<br>•	<strong>Offenes Ökosystem: </strong>Wer bereits an Claude oder Gemini gewöhnt ist, kann diese über Schnittstellen einbinden und denselben tiefen Projektkontext nutzen, ohne auf seine bevorzugten Werkzeuge verzichten zu müssen.',
+                blog_blog02texttitel03: "Die Vorteile von KI in der Spieleentwicklung – und die Stolperfallen, auf die man achten muss",
+                blog_blog02text04: 'Nachdem wir uns die konkreten Tools angesehen haben, möchte ich zum Abschluss meine bisherigen Erfahrungen und Beobachtungen in den wichtigsten Vorteilen und potenziellen Stolperfallen zusammenfassen – quasi als eigene Entwicklernotiz und als kleiner Hinweis für alle, die ebenfalls damit experimentieren. Warum das Beherrschen von KI-Tools für die Spieleentwicklung immer wichtiger wird, liegt an diesen unbestreitbaren Vorteilen:<br>•	<strong>Extrem schnelles Prototyping: </strong>Ein einziger Satz reicht für einen ersten Prototypen. Früher musste man für eine neue Spielidee erst ein Grundgerüst aufbauen und Assets zusammensuchen, was oft ein bis zwei Wochen dauerte. Mit KI läuft ein erster Prototyp in wenigen Minuten. So lässt sich mit minimalem Aufwand testen, ob eine Mechanik wirklich Spaß macht, bevor man Monate in Grafik und Programmierung steckt.<br>•	<strong>Geschlossene Test- und Debugging-Kreisläufe: </strong>Moderne Tools vervollständigen nicht nur ein paar Zeilen Code, sondern verstehen Projektstrukturen, starten das Spiel selbstständig, lesen echte Fehlerprotokolle aus und passen Werte nach eigenen Testläufen an. Für Solo-Entwickler fühlt sich das an wie ein unermüdlicher Tester und Junior-Programmierer an der Seite, was enorm viel mentale Energie bei der Fehlersuche spart. Mit diesem Wissen bekommt auch mein nächstes persönliches Projekt einen neuen Helfer an die Seite!<br>•	<strong>Branchenstandard: </strong>Spiele mit KI-Offenlegungs-Tags sind auf Steam längst Alltag geworden. Laut der Auswertung eines Entwicklers von rund 53.600 Steam-Spielen trugen bis Mitte Juli 2026 30,8 % der Neuerscheinungen KI-Offenlegungs-Tags (Games.gg); ein anderer Tracker bezifferte diesen Wert für Veröffentlichungen im Oktober 2026 auf 49,9 % (FinalBoss). Zwar verwenden beide Datensätze unterschiedliche Methoden und sollten nicht eins zu eins verglichen werden, doch der Aufwärtstrend ist unbestreitbar (auch wenn dieser Prozentsatz allein nichts darüber aussagt, wie viel KI-Inhalt die Spieler im Spiel tatsächlich antreffen).<br><br><strong>Grenzen und Stolperfallen (Je tiefer man einsteigt, desto genauer sollte man hinschauen)</strong><br>•	<strong>Qualitätsgrenzen und „Wartungsschulden“: </strong>„Prompt-to-Game“-Plattformen liefern derzeit vor allem kleine 2D- oder Browser-Spiele zuverlässig ab, sind aber von kommerziellen 3D-Titeln noch weit entfernt. Selbst wenn Coding-Agenten die Spiellogik schreiben, braucht es für stimmige Grafiken und Sounds immer noch menschliches Gespür. Ein ganz praktisches Problem sind zudem „Wartungsschulden“ – wenn die KI komplexen Code schreibt, den man selbst nicht durchblickt, wird das Beheben von Bugs oder das Einbauen neuer Features später zum absoluten Albtraum.<br>•	<strong>Plattform-Bindung und Sicherheitslücken: </strong>Viele webbasierte Ein-Klick-Generatoren hosten die Spiele auf eigenen Servern, schränken den Export ein oder sichern sich in den Nutzungsbedingungen weitreichende Rechte an den Inhalten – vor einer kommerziellen Nutzung sollte man hier genau hinsehen.<br>•	<strong>Urheberrechts-Grauzonen und die roten Linien von Steam: </strong>Nach aktueller Rechtslage in den meisten Ländern genießen rein KI-generierte Inhalte keinen Urheberrechtsschutz. Wer sein komplettes Spiel per Prompt erstellen lässt, hat kaum rechtliche Handhabe, falls es jemand klont – umgekehrt tappt man mit KI schnell in die Plagiatsfalle, wenn geschützte Stile oder Figuren imitiert werden. Was die Veröffentlichung angeht, zieht Steam eine klare Grenze: Produktivitäts-Tools hinter den Kulissen (wie Coding-Assistenten) müssen nicht angegeben werden, aber alles, was Spieler direkt sehen oder hören (Grafik, Audio, Texte), muss offengelegt werden. Wer KI in Echtzeit im Spiel nutzt, braucht zudem strikte Inhaltsfilter als Schutzmechanismus. Wichtig dabei: Eine Offenlegung schützt nicht vor Urheberrechtsklagen – bei zu großer Ähnlichkeit zu bestehenden Spielen droht dennoch die Entfernung aus dem Shop.',
                 project_genre: "Genre:",
                 proj_desc: "Spiele und Entwicklungsprojekte werden hier angezeigt...",
                 project_projectTitle01: "Pfoten Abenteuer",
                 project_projectText01: "Es war eigentlich ein ganz gewöhnlicher Mittag. Doch ihr Herrchen Charles, der am Nachmittag zuvor nur kurz zum Einkaufen weggegangen war, kam einfach nicht mehr zurück. Seine beiden kleinen Haustiere – Kätzchen Dylan und Hündchen Amy – begannen, sich auf die Suche nach ihrem Herrchen...",
                 project_projectGenre01: "Einzelspieler, Zwei Protagonisten, 2D, Abenteuer, Rätsel",
+                project_projectTitle02: "Run, Tang! Run!",
+                project_projectText02: "Schlüpfe in die Rolle von einem neugierigen und geschickten Archäologen, und begib dich auf eine spannende Schatzsuche durch atemberaubende Welten! Renne, springe und klettere durch fallenreiche antike Ruinen, sonnenüberflutete vergessene Inseln und schwebende Heiligtümer hoch über den Wolken. Meistere abwechslungsreiche 3D-Plattformer-Herausforderungen, löse uralte Rätsel und sammle verschollene Relikte, um die Geheimnisse der Geschichte zu lüften!",
+                project_projectGenre02: "Plattformer, 3D, Action, Collectathon, Erkundung, Einzelspieler  ",
+                project01_title: "Pfoten Abenteuer - Ein 2D-Abenteuer auf der Suche nach dem Herrchen",
+                project01_01title: "1. Hintergrundgeschichte",
+                project01_02title: "2. Gameplay & Stil",
+                project01_03title: "3. Charaktere & Fähigkeiten",
+                project01_04title: "4. Ausdauersystem",
+                project01_05title: "5. Leveldesign & Verzweigte Story",
+                project01_01text: "Herrchen Charles ist den ganzen Tag nicht nach Hause gekommen – stattdessen brechen mysteriöse Gestalten ins Haus ein, offenbar auf der Suche nach einem Geheimnis. Um ihr verschwundenes Herrchen wiederzufinden, tun sich Kater Dylan und Hündin Amy zusammen. Von der Villa über das Einkaufszentrum bis hin zur Wildnis und alten Fabriken begibt sich dieses ungleiche Tier-Duo auf ein großes Abenteuer durch die Menschenwelt.",
+                project01_02text01: "•	2D-Pixel-Cartoon-Stil: Das Spiel setzt auf eine 2D-Ästhetik im Cartoon-Stil mit seitlichem Bildlauf, die perfekt zu diesem entzückenden Duo und der Welt, in der es lebt, passt.",
+                project01_02text02: "•	Echtzeit-Charakterwechsel: Wechsle jederzeit nahtlos zwischen Dylan und Amy, um Hindernisse zu überwinden und Rätsel aus zwei völlig unterschiedlichen Perspektiven zu lösen.",
+                project01_03text01: "•	Dylan (Kater): Flink und besonnen. Er beherrscht hohe Sprünge und geschicktes Verstecken, schlüpft durch enge Spalten und erreicht hohe Plattformen – ideal für Schleichpassagen und Erkundungen in der Höhe.",
+                project01_03text02: "•	Amy (Hündin): Gutmütig und mit einer feinen Spürnase ausgestattet. Mit ihrer „Geruchsspur“-Fähigkeit verfolgt sie die Fährten von Herrchen und Fremden, um Hinweise und versteckte Objekte aufzuspüren. Zudem kann sie Kisten und Hindernisse verschieben.",
+                project01_04text01: "•	Ausdauerverbrauch: Dylans Sprünge, Amys Schiebe-Aktionen sowie das Entdecktwerden durch menschliche NPCs verbrauchen Ausdauer.",
+                project01_04text02: "•	Nahrung & Tauschhandel: Sammle in den Leveln verstreutes Essen oder Tierkekse, um Ausdauer aufzufüllen – oder teile sie mit Streunern, um im Gegenzug Hinweise und Hilfe zu erhalten.",
+                project01_04text03: "•	Scheiterns Konsequenzen: Wirst du ohne Ausdauer entdeckt oder wird einer der beiden von einem NPC geschnappt, endet die aktuelle Mission sofort und führt die Geschichte in ein alternatives Level weiter.",
+                project01_05text01: "•	Verzweigte Handlungsstränge: Bestimmte Level bieten entscheidende Wendepunkte – deine Entscheidungen sowie Erfolg oder Misserfolg einer Mission schalten unterschiedliche Story-Routen frei.",
+                project01_05text02: "•	Tag-Nacht-Wechsel & dynamische Welt: Erkunde Apartments, Einkaufszentren, Bürogebäude, Fabriken, Häfen und Bahnhöfe zu verschiedenen Tages- und Nachtzeiten. Dieselbe Karte verändert je nach Story-Route ihre Szenen, Dialoge und Rätsel.",
+                project01_05text03: "•	Detektivarbeit im Detail: Wichtige Hinweise verstecken sich in Gesprächen und Monologen. Indem du die Geschichte aus verschiedenen Blickwinkeln erlebst, setzt du nach und nach die Wahrheit hinter dem Verschwinden zusammen.",
                 about_desc: "Hey, ich bin Stephen – aber du kannst mich auch gerne Tang nennen. Willkommen auf meiner Website!",
                 about_text01: "Ich bin ein echter Nerd mit einem Doppel-Bachelor in Technischer Mechanik und Informatik.",
                 about_text02: "Als leidenschaftlicher Gamer und Spieleentwickler nutze ich diesen Ort, um meine Reise durch die Spieleentwicklung zu dokumentieren und meine eigenen Projekte vorzustellen.",
@@ -675,7 +937,7 @@
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
-                    el.textContent = translations[lang][key];
+                    el.innerHTML = translations[lang][key];
                 }
             });
             langMenu.classList.remove('show'); // 切换后关闭菜单
@@ -708,7 +970,34 @@
             document.getElementById('blog').classList.add('active');
         }
 
-        //6. Email Formel
+        // 6. Projects Functionen
+        function showProjectPost(event, projectId) {
+            event.preventDefault();
+
+            // 隐藏博客列表
+            document.getElementById('projects').classList.remove('active');
+
+            // 隐藏所有文章详情
+            document.querySelectorAll('.project-detail-view').forEach(view => {
+                view.style.display = 'none';
+            });
+
+            // 显示用户点击的那一篇博客
+            document.getElementById(projectId).style.display = 'block';
+        }
+
+        // Back to Project List
+        function backToProjectList() {
+            // 隐藏所有文章详情
+            document.querySelectorAll('.project-detail-view').forEach(view => {
+                view.style.display = 'none';
+            });
+
+            // 重新显示博客列表
+            document.getElementById('projects').classList.add('active');
+        }
+
+        //7. Email Formel
         const contactForm = document.getElementById('contact-form');
         const resultEl = document.getElementById('form-result');
 
